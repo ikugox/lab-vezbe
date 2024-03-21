@@ -5,6 +5,20 @@
 struct Kordinate
 {
     int x, y;
+    bool operator==(Kordinate obj)
+    {
+        if (this->x != obj.x)
+            return false;
+        if (this->y != obj.y)
+            return false;
+        return true;
+    }
+    Kordinate (size_t x = 0, size_t y = 0)
+    {
+        this->x = x;
+        this->y = y;
+    }
+
 };
 
 class Brodovi
@@ -14,112 +28,11 @@ private:
     int brojBrodova;    
 public:
     Brodovi();
+    Brodovi(More *more, const char *imeFajla);
     ~Brodovi();
-    void Ucitaj(More more, const char *imeFajlaB);
+    void Ucitaj(More *more, const char *imeFajlaB);
+    bool DaLiPostoji(More *more, int x, int y);
 private:
-    bool ProveraValidnosti(More *more, int x, int y);
+    bool ProveraValidnosti(More *more, OBJEKAT **kopijaMora, int x, int y);
+    void Dodaj(Kordinate obj);
 };
-
-Brodovi::Brodovi()
-{
-    this->brojBrodova = 0;
-    this->pozicije = nullptr;
-}
-
-Brodovi::~Brodovi()
-{
-    delete[] this->pozicije;
-}
-
-
-
-#include "more.h"
-
-bool Brodovi::ProveraValidnosti(More *more, int x, int y)
-{
-    //LOKACIJA
-    if (more->VratiObjekat(x, y) == OBJEKAT::BROD ||
-        more->VratiObjekat(x, y) == OBJEKAT::OSTRVO)
-        return false;
-    
-    //IVICE
-    if (x <= 0 || x >= more->VratiX())
-        return false;
-    if (y <= 0 || y >= more->VratiY())
-        return false;
-    
-    //SUSEDNA POLJA
-    if (more->VratiObjekat(x, y + 1) == OBJEKAT::OSTRVO ||
-        more->VratiObjekat(x, y + 1) == OBJEKAT::BROD)
-        return false;
-    if (more->VratiObjekat(x, y - 1) == OBJEKAT::OSTRVO ||
-        more->VratiObjekat(x, y - 1) == OBJEKAT::BROD)
-        return false;
-    if (more->VratiObjekat(x + 1, y) == OBJEKAT::OSTRVO ||
-        more->VratiObjekat(x + 1, y) == OBJEKAT::BROD)
-        return false;
-    if (more->VratiObjekat(x - 1, y) == OBJEKAT::OSTRVO ||
-        more->VratiObjekat(x - 1, y) == OBJEKAT::BROD)
-        return false;
-    
-    return true;
-}
-
-void Brodovi::Ucitaj(More more, const char *imeFajla)
-{
-    std::ifstream fajl(imeFajla);
-    if (!fajl.good())
-        return;
-    
-    //INICIJALIZACIJA
-    int brojBrodova;
-    fajl >> brojBrodova;
-    int pozX, pozY;
-    int duzina;
-    bool uspravno;
-
-    for (size_t i = 0; i < brojBrodova; i++)
-    {
-        //ZA SVAKI BROD...
-        fajl >> pozX >> pozY >> duzina >> uspravno;
-        
-        //PROVERA VALIDNOSTI
-        bool validno;
-        for (size_t j = 0; j < duzina; j++)
-        {
-            validno = this->ProveraValidnosti(&more,
-                                              pozX + j*!uspravno,
-                                              pozY + j*uspravno);
-            if (duzina < 2)
-                validno = false;
-            if (!validno)
-                break;
-        }
-        if (!validno)
-            continue;
-        
-        for (size_t j = 0; j < duzina; j++)
-            more.VratiObjekat(pozX + j*!uspravno, pozY + j*uspravno) = OBJEKAT::BROD;
-        
-        this->brojBrodova += duzina;
-    }
-
-    fajl.close();
-}
-
-void More::Pogodi(int x, int y)
-{
-    //PROVERA VALIDNOSTI
-    if (x < 0 || x >= this->x)
-        return; //TODO! promeni u throw
-    if (y < 0 || y >= this->y)
-        return;
-    
-    if (this->polje[y][x] == OBJEKAT::BROD)
-    {
-        this->polje[y][x] = OBJEKAT::POGODJENO;
-        this->brojBrodova--;
-    }
-    else
-        this->polje[y][x] = OBJEKAT::PROMASENO;
-}
