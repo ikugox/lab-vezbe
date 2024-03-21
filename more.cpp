@@ -40,13 +40,3 @@ More::~More()
     }
     delete[] this->polje;
 }
-
-void More::Print()
-{
-    for (size_t i = 0; i < this->y; i++)
-    {
-        for (size_t j = 0; j < this->x; j++)
-            std::cout << static_cast<char>(this->polje[i][j]);
-        std::cout << std::endl;
-    }
-}

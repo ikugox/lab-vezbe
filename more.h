@@ -1,7 +1,5 @@
 #pragma once
-#include "objekat.h"
-#include <iostream>
-#include <fstream>
+#include "strukture.h"
 
 class More
 {
@@ -11,7 +9,6 @@ private:
 public:
     More(const char *imeFajla);
     virtual ~More();
-    void Print();
     OBJEKAT VratiObjekat(int x, int y)
         { return this->polje[y][x]; }
     int VratiX()
