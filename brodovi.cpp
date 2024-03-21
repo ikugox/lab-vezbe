@@ -1,5 +1,13 @@
 #include "brodovi.h"
 
+//TODO: REMOVE!
+void Brodovi::Print()
+{
+    for (size_t i = 0; i < this->brojBrodova; i++)
+        std::cout << this->pozicije[i].x << ','
+                  << this->pozicije[i].y << '\n';
+    std::cout << '\n';
+}
 Brodovi::Brodovi()
 {
     this->brojBrodova = 0;
@@ -9,11 +17,7 @@ Brodovi::Brodovi()
 Brodovi::Brodovi(More *more, const char *imeFajla)
     : Brodovi()
 {
-    
     this->Ucitaj(more, imeFajla);
-    for (size_t i = 0; i < this->brojBrodova; i++)
-        std::cout << this->pozicije[i].x << ','
-                  << this->pozicije[i].y << '\n';
 }
 
 Brodovi::~Brodovi()
@@ -107,7 +111,7 @@ void Brodovi::Ucitaj(More *more, const char *imeFajla)
     fajl.close();
 }
 
-bool Brodovi::DaLiPostoji(More *more, int x, int y)
+bool Brodovi::Upucano(More *more, int x, int y)
 {
     //PROVERA VALIDNOSTI
     if (x < 0 || x >= more->VratiX())
@@ -115,6 +119,7 @@ bool Brodovi::DaLiPostoji(More *more, int x, int y)
     if (y < 0 || y >= more->VratiY())
         return false;
     
+    //
     bool postoji = false;
     for (size_t i = 0; i < this->brojBrodova; i++)
     {
@@ -140,4 +145,9 @@ void Brodovi::Dodaj(Kordinate obj)
     this->pozicije = novePozicije;
     
     this->brojBrodova++;
+}
+
+bool Brodovi::PostojeBrodovi()
+{
+    return this->brojBrodova == 0;
 }

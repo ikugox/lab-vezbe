@@ -28,5 +28,9 @@ struct Kordinate
         this->x = x;
         this->y = y;
     }
-
+    Kordinate (int x, int y)
+    {
+        this->x = x;
+        this->y = y;
+    }
 };
