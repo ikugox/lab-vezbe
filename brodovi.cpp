@@ -6,12 +6,20 @@ void Brodovi::Print()
     for (size_t i = 0; i < this->brojBrodova; i++)
         std::cout << this->pozicije[i].x << ','
                   << this->pozicije[i].y << '\n';
+
+    // for (size_t i = 0; i < this->brojSvihBrodova; i++)
+    //     std::cout << this->svePozicije[i].x << ','
+    //               << this->svePozicije[i].y << '\n';
+    
     std::cout << '\n';
 }
+
 Brodovi::Brodovi()
 {
     this->brojBrodova = 0;
     this->pozicije = nullptr;
+    this->brojSvihBrodova = 0;
+    this->svePozicije = nullptr;
 }
 
 Brodovi::Brodovi(More *more, const char *imeFajla)
@@ -107,6 +115,10 @@ void Brodovi::Ucitaj(More *more, const char *imeFajla)
             this->Dodaj(Kordinate(pozX + j*!uspravno, pozY + j*uspravno));
         }
     }
+    this->brojSvihBrodova = this->brojBrodova;
+    this->svePozicije = new Kordinate[this->brojSvihBrodova];
+    for (size_t i = 0; i < this->brojSvihBrodova; i++)
+        this->svePozicije[i] = this->pozicije[i];
 
     fajl.close();
 }
@@ -149,5 +161,21 @@ void Brodovi::Dodaj(Kordinate obj)
 
 bool Brodovi::PostojeBrodovi()
 {
-    return this->brojBrodova == 0;
+    return this->brojBrodova != 0;
+}
+
+bool Brodovi::PostojeKordinate(int x, int y)
+{
+    for (size_t i = 0; i < this->brojSvihBrodova; i++)
+        if (this->svePozicije[i] == Kordinate(x, y))
+            return true;
+    return false;
+}
+
+bool Brodovi::PostojeZiveKordinate(int x, int y)
+{
+    for (size_t i = 0; i < this->brojBrodova; i++)
+        if (this->pozicije[i] == Kordinate(x, y))
+            return true;
+    return false;
 }

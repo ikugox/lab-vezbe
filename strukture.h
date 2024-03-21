@@ -7,7 +7,7 @@ enum class OBJEKAT : char
     POGODJENO = '0',
     PROMASENO = '/',
     VODA = '~',
-    OSTRVO = 'c',
+    OSTRVO = 'O',
     BROD = 'B',
     PRAZNO = '_'
 };

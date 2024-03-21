@@ -13,9 +13,11 @@ public:
     ~Igra();
     void Kreni();
 private:
-    void Strategija1();
-    void Strategija2();
-    void Strategija3(int smerIndeksa);
+    bool Strategija1();
+    bool Strategija2();
+    bool Strategija3(int smerIndeksa);
     bool Pogodi(int x, int y);
+    void Print();
+    void PrintKraj();
     int x, y;
 };

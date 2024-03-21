@@ -15,9 +15,8 @@ Igra::~Igra()
 
 bool Igra::Pogodi(int x, int y)
 {
-    // this->brodovi->Print();
-    bool pogodjeno = this->brodovi->Upucano(this->more, x, y);
     std::cout << x << ',' << y << ' ';
+    bool pogodjeno = this->brodovi->Upucano(this->more, x, y);
     if (pogodjeno)
     {
         std::cout << "POGODJENO!!!";
@@ -27,18 +26,26 @@ bool Igra::Pogodi(int x, int y)
         std::cout << "PROMASENO";
     }
     std::cout << std::endl;
+    this->Print();
     return pogodjeno;
 }
 
 void Igra::Kreni()
 {
-    while (!this->brodovi->PostojeBrodovi())
+    while (this->brodovi->PostojeBrodovi())
     {
-        this->Strategija1();
+        if (!this->Strategija1())
+            break;
+        int x = this->Strategija2();
+        if (!this->brodovi->PostojeBrodovi())
+            break;
+        if (!this->Strategija3(x))
+            break;
     }
+    this->PrintKraj();
 }
 
-void Igra::Strategija1()
+bool Igra::Strategija1()
 {
     while (true)
     {
@@ -47,13 +54,15 @@ void Igra::Strategija1()
         if (this->Pogodi(this->x, this->y))
             break;
     }
-    this->Strategija2();
-    return;
+    if (!this->brodovi->PostojeBrodovi())
+        return false;
+    
+    return true;
 }
 
 static Kordinate smerovi[4] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-void Igra::Strategija2()
+bool Igra::Strategija2()
 {
     for (size_t i = 0; i < 4; i++)
     {
@@ -68,13 +77,13 @@ void Igra::Strategija2()
         }
         else
         {
-            this->Strategija3(i % 2);
-            return;
+            return (i % 2);
         }
     }
+    return false;
 }
 
-void Igra::Strategija3(int smerIndeks)
+bool Igra::Strategija3(int smerIndeks)
 {
     int xStart = this->x,
         yStart = this->y;
@@ -93,5 +102,39 @@ void Igra::Strategija3(int smerIndeks)
                 break;
             }
         }
-    return;
+    if (!this->brodovi->PostojeBrodovi())
+        return false;
+    return true;
+}
+
+void Igra::Print()
+{
+    for (size_t i = 0; i < this->more->VratiY(); i++)
+    {
+        for (size_t j = 0; j < this->more->VratiX(); j++)
+        {
+            if (this->brodovi->PostojeKordinate(j, i) &&
+               !this->brodovi->PostojeZiveKordinate(j, i))
+                std::cout << static_cast<char>(OBJEKAT::POGODJENO);
+            else
+                std::cout << static_cast<char>(this->more->VratiObjekat(j, i));
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void Igra::PrintKraj()
+{
+    for (size_t i = 0; i < this->more->VratiY(); i++)
+    {
+        for (size_t j = 0; j < this->more->VratiX(); j++)
+        {
+            if (this->brodovi->PostojeKordinate(j, i))
+                std::cout << static_cast<char>(OBJEKAT::BROD);
+            else
+                std::cout << static_cast<char>(this->more->VratiObjekat(j, i));
+        }
+        std::cout << std::endl;
+    }
 }
