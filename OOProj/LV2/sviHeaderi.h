@@ -1,0 +1,12 @@
+#pragma once
+#include "komponente/cpu.h"
+#include "komponente/monitor.h"
+#include "komponente/ram.h"
+#include "komponente/memorija.h"
+#include "komponente/hdd.h"
+#include "komponente/ssd.h"
+#include "komponente/tastatura.h"
+#include "fakultet.h"
+#include "racunar.h"
+#include "svic.h"
+#include "racunarskaUcionica.h"
