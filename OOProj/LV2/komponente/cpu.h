@@ -7,5 +7,5 @@ private:
     int kolicinaKesa;
 public:
     CPU(/* args */);
-    ~CPU();
+    ~CPU() {}
 };

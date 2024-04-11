@@ -8,5 +8,5 @@ public:
     HDD(/* args */)
         : Memorija()
         {}
-    ~HDD();
+    ~HDD() {}
 };

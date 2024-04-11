@@ -7,6 +7,12 @@ class Svic
 private:
     Racunar *racunari [24] = {nullptr};
 public:
+    ~Svic()
+    {
+        for (size_t i = 0; i < 24; i++)
+            if (this->racunari[i] != nullptr)
+                delete this->racunari[i];
+    }
     void DodajRacunar(Racunar *obj)
     {
         for (size_t i = 0; i < 24; i++)

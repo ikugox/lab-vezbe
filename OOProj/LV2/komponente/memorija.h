@@ -6,5 +6,5 @@ private:
     int kolicina;
 public:
     Memorija(/* args */);
-    ~Memorija();
+    ~Memorija() {}
 };

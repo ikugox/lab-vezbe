@@ -28,6 +28,14 @@ public:
         this->ram = ram;
         this->memorija = memorija;
     }
+    ~Racunar()
+    {
+        delete this->tastatura;
+        delete this->monitor;
+        delete this->cpu;
+        delete this->ram;
+        delete this->memorija;
+    }
     std::string VratiMAC()
         { return this->MAC; }
     void PromenaIspravnosti()

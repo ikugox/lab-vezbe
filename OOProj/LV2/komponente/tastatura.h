@@ -6,5 +6,5 @@ private:
     /* data */
 public:
     Tastatura(/* args */);
-    ~Tastatura();
+    ~Tastatura() {}
 };

@@ -9,5 +9,5 @@ private:
     std::string tip;
 public:
     RAM(/* args */);
-    ~RAM();
+    ~RAM() {}
 };

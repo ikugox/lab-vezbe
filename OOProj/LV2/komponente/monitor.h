@@ -9,5 +9,5 @@ private:
     std::string marka;
 public:
     Monitor(/* args */);
-    ~Monitor();
+    ~Monitor() {}
 };

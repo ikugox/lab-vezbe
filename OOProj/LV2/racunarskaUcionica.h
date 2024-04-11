@@ -12,6 +12,12 @@ private:
 public:
     RacunarskaUcionica(std::string oznaka = "")
         { this->oznaka = oznaka; }
+    ~RacunarskaUcionica()
+    {
+        for (Racunar* r : this->racunari)
+            delete r;
+        racunari.clear();
+    }
     std::string VratiOznaku()
         { return this->oznaka; }
     void DodajRacunar(Racunar *obj)

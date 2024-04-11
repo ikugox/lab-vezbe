@@ -8,5 +8,5 @@ public:
     SSD(/* args */)
         : Memorija()
         {}
-    ~SSD();
+    ~SSD() {}
 };

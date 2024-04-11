@@ -12,6 +12,15 @@ private:
     Fakultet(const char *ime)
         { this->ime = ime; };
 public:
+    ~Fakultet()
+    {
+        while(!this->ucionice.empty())
+        {
+            auto x = ucionice.back();
+            delete x;
+            ucionice.pop_back();
+        }
+    }
     static Fakultet* Instanciraj(const char *ime)
     {
         if (!instanca)
