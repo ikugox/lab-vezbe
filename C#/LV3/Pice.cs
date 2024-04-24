@@ -33,4 +33,11 @@ class Pice : Stavka {
         _domace = br.ReadBoolean();
         base.Ucitaj(br);
     }
+/* -------------------------------------------------------------------------- */
+    public override void Print() {
+        base.Print();
+        Console.WriteLine("Kolicina: " + _kolicina);
+        Console.WriteLine("CenaPoLitru: " + _cenaPoLitru);
+        Console.WriteLine("Domace: " + _domace);
+    }
 }

@@ -19,7 +19,7 @@ class Restoran {
     }
 
     public void IzbaciPokvareno() {
-        foreach (Stavka stavka in _meni)
+        foreach (Stavka stavka in _meni.ToList())
             if (stavka.IstekRoka < DateTime.Today)
                 _meni.Remove(stavka);
     }
@@ -59,5 +59,12 @@ class Restoran {
             s.Ucitaj(br);
             _meni.Add(s);
         }
+    }
+/* -------------------------------------------------------------------------- */
+    public void Print() {
+        Console.WriteLine("Ime: " + _naziv);
+        Console.WriteLine("--------MENI--------");
+        foreach (Stavka stavka in _meni)
+            stavka.Print();
     }
 }

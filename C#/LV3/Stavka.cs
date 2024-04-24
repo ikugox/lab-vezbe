@@ -35,4 +35,12 @@ abstract class Stavka : System.IComparable {
             throw new ArgumentException("obj ima null vrednost");
         return VratiCenu().CompareTo(((Stavka)obj).VratiCenu());
     }
+/* -------------------------------------------------------------------------- */
+    public virtual void Print() {
+        Console.WriteLine("~~~~~~~~~~~~");
+        Console.WriteLine("Naziv: " + _naziv);
+        Console.WriteLine("Cena: " + VratiCenu());
+        Console.WriteLine("IstekRoka: " + _istekRoka);
+        Console.WriteLine("Veganska: " + _veganska);
+    }
 }

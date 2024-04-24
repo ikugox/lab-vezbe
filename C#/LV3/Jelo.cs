@@ -18,7 +18,7 @@ class Jelo : Stavka {
 /* -------------------------------------------------------------------------- */
     public override float VratiCenu() {
         float cena = _nabavnaCena * (int)_kvalitet;
-        if ((DateTime.Today - _istekRoka).Days < 3)
+        if ((_istekRoka - DateTime.Today).Days <= 3)
             cena *= 0.8f;
         return cena;
     }
@@ -34,5 +34,11 @@ class Jelo : Stavka {
         _nabavnaCena = br.ReadSingle();
         _kvalitet = (KvalitetJela)br.ReadInt32();
         base.Ucitaj(br);
+    }
+/* -------------------------------------------------------------------------- */
+    public override void Print() {
+        base.Print();
+        Console.WriteLine("NabavnaCena: " + _nabavnaCena);
+        Console.WriteLine("Kvalitet: " + _kvalitet);
     }
 }
