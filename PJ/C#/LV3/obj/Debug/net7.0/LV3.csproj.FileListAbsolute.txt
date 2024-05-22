@@ -1,0 +1,15 @@
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/bin/Debug/net7.0/LV3
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/bin/Debug/net7.0/LV3.deps.json
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/bin/Debug/net7.0/LV3.runtimeconfig.json
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/bin/Debug/net7.0/LV3.dll
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/bin/Debug/net7.0/LV3.pdb
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.csproj.AssemblyReference.cache
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.GeneratedMSBuildEditorConfig.editorconfig
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.AssemblyInfoInputs.cache
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.AssemblyInfo.cs
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.csproj.CoreCompileInputs.cache
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.dll
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/refint/LV3.dll
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.pdb
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/LV3.genruntimeconfig.cache
+/home/alex/Documents/Code/Lab Vezbe/C#/LV3/obj/Debug/net7.0/ref/LV3.dll
